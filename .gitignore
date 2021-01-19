@@ -1,0 +1,16 @@
+# Cython caches
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Package creation/distribution
+bin/
+dist/
+
+# Testing debris
+.coverage
+coverage.xml
+htmlcov
+
+# Excluded for privacy
+tests/data/valid-mpans.json
