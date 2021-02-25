@@ -233,9 +233,11 @@ there.
 ## Changelog
 
 
-### 1.0.1
+### 1.0.3
 
-* Initial release
+* Bugfix: The `is_valid()` shortcut now returns `False` when an unparseable
+  MPAN is passed in, rather than exploding with an `InvalidMpanError`.
+* Added lots more documentation to the README.
 
 
 ### 1.0.2
@@ -243,8 +245,6 @@ there.
 * Minor change to use a new contact email
 
 
-### 1.0.3
+### 1.0.1
 
-* Bugfix: The `is_valid()` shortcut now returns `False` when an unparseable
-  MPAN is passed in, rather than exploding with an `InvalidMpanError`.
-* Added lots more documentation to the README.
+* Initial release
