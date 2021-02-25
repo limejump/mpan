@@ -392,9 +392,22 @@ class MPAN:
     @property
     def is_valid(self) -> bool:
         """
-        Note that "valid" here refers to whether the core checks-out against
-        the checksum digit.  This logic does *not* validate the top line.
+        If this is a long MPAN, attempt to validate the top line and
+        distributor by checking that those values conform to expected ranges.
+        If that all looks good, perform the checksum for the bottom line.
         """
+
+        if self.profile_class is not None:
+            if not self.profile_class.is_valid:
+                return False
+
+        if self.meter_time_switch_code is not None:
+            if not self.meter_time_switch_code.is_valid:
+                return False
+
+        if not self.distributor.is_valid:
+            return False
+
         pairs = zip(self.PRIMES, self.core[:-1])
         result = sum(prime * int(digit) for prime, digit in pairs) % 11 % 10
         return result == int(self.checksum)
@@ -423,4 +436,7 @@ class MPAN:
 
 
 def is_valid(raw_string: str) -> bool:
-    return MPAN(raw_string).is_valid
+    try:
+        return MPAN(raw_string).is_valid
+    except InvalidMPANError:
+        return False

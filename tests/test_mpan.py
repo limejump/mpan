@@ -21,8 +21,10 @@ UNPARSEABLE = (
 
 # These look legit, but don't pass the validation
 INVALID = (
-    "018011002099999999381",
-    "1099999999991",
+    "2499999999990",  # Bad checksum
+    "8699999999991",  # Bad distributor
+    "991112221312345678907",  # Bad profile class
+    "000002221312345678907",  # Bad mtc
 )
 
 
@@ -237,5 +239,8 @@ class IsValidTestCase(TestCase):
 
     def test_is_valid_fail(self):
         for string in INVALID:
+            with self.subTest(string=string):
+                self.assertFalse(is_valid(string))
+        for string in UNPARSEABLE:
             with self.subTest(string=string):
                 self.assertFalse(is_valid(string))
