@@ -171,7 +171,9 @@ There's also a shortcut if you just want validation:
 from mpan import is_valid
 
 
-is_valid("2499999999991")  # True
+is_valid("2499999999991")     # True
+is_valid("2499999999990")     # False
+is_valid("I am not an MPAN")  # False
 ```
 
 
