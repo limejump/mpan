@@ -239,6 +239,7 @@ there.
 
 * Bugfix: The `is_valid()` shortcut now returns `False` when an unparseable
   MPAN is passed in, rather than exploding with an `InvalidMpanError`.
+* Bugfix: Comparing two identical MPAN objects now returns boolean `True`
 * Added lots more documentation to the README.
 
 
