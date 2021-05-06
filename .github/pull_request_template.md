@@ -1,5 +1,3 @@
-**Description:**
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
-
-**JIRA:**
-Please include a link to the issue on JIRA if applicable.
+* Please include a summary of the change and which issue is fixed.
+* Please also include relevant motivation and context.
+* List any dependencies that are required for this change.

@@ -365,6 +365,11 @@ class MPAN:
     def __repr__(self):
         return str(self)
 
+    def __eq__(self, other):
+        if not isinstance(other, MPAN):
+            return False
+        return str(self) == str(other)
+
     @property
     def is_short(self) -> bool:
         return self.profile_class is None
