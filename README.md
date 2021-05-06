@@ -3,9 +3,13 @@
 
 # mpan
 
+[![PyPI](https://img.shields.io/pypi/pyversions/mpan)](https://pypi.org/project/mpan)
+[![PyPI](https://img.shields.io/pypi/wheel/mpan)](https://pypi.org/project/mpan)
+[![License](https://img.shields.io/pypi/l/mpan)](https://mit-license.org/)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+![100% Coverage](https://img.shields.io/badge/coverage-100%25-4ec820.svg)
 
-`mpan` is a library to help you parse the UK energy industry's MPAN number format.
+A library to help you parse the UK energy industry's MPAN number format.
 
 
 ## How it works
@@ -201,6 +205,15 @@ changes, you should install that and then just run `poetry install`.  This will
 pull in all the development dependencies like `pytest`, `isort`, etc.
 
 
+## Testing
+
+When inside your virtualenv, just run:
+
+```shell
+$ pytest
+```
+
+
 ### Deployment/Releases
 
 To build, use Poetry:
@@ -216,15 +229,6 @@ $ poetry publish
 ```
 
 
-## Testing
-
-When inside your virtualenv, just run:
-
-```shell
-$ pytest
-```
-
-
 ## External Documentation
 
 This is based largely on the [Wikipedia article](https://en.wikipedia.org/wiki/Meter_Point_Administration_Number)
@@ -237,17 +241,23 @@ there.
 
 ### 1.0.3
 
-* Bugfix: The `is_valid()` shortcut now returns `False` when an unparseable
-  MPAN is passed in, rather than exploding with an `InvalidMpanError`.
-* Bugfix: Comparing two identical MPAN objects now returns boolean `True`
+* Bugfix: Comparing two identical MPAN objects now returns boolean `True`,
+  while comparing an MPAN object to a string of the same value returns `False`.
 * Added lots more documentation to the README.
 
 
 ### 1.0.2
 
-* Minor change to use a new contact email
+* `.is_valid()` was amended to validate the top row as well.
+* `is_valid()` now returns a boolean rather than potentially throwing an
+  `InvalidMPANError`.
 
 
 ### 1.0.1
+
+* Minor change to use a new contact email
+
+
+### 1.0.0
 
 * Initial release
