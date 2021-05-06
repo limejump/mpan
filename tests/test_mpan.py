@@ -156,6 +156,20 @@ class MPANTestCase(TestCase):
             repr(MPAN("018011002099999999386")), "018011002099999999386"
         )
 
+    def test___eq__with_valid_mpans(self):
+        for string in get_valid_mpans():
+            self.assertEqual(MPAN(string), MPAN(string))
+
+    def test___eq__with_invalid_mpans(self):
+        for string in INVALID:
+            self.assertEqual(MPAN(string), MPAN(string))
+
+    def test___eq__with_foreign_objects(self):
+        mpan_string = "108011002099999999386"
+        self.assertNotEqual(MPAN(mpan_string), mpan_string)
+        self.assertNotEqual(MPAN(mpan_string), 108011002099999999386)
+        self.assertNotEqual(MPAN(mpan_string), "twelve")
+
     def test_parsing_long_pass(self):
 
         mpan = MPAN("018011002099999999386")
