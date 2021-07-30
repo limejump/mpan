@@ -239,6 +239,11 @@ there.
 ## Changelog
 
 
+### 1.0.4
+
+* Minor update to the validation error message.
+
+
 ### 1.0.3
 
 * Bugfix: Comparing two identical MPAN objects now returns boolean `True`,

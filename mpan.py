@@ -357,7 +357,7 @@ class MPAN:
             self._parse_long(m)
             return
 
-        raise InvalidMPANError("This doesn't look like an MPAN")
+        raise InvalidMPANError(f"{self._raw} doesn't look like an MPAN")
 
     def __str__(self) -> str:
         return self._raw
