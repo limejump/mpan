@@ -12,10 +12,10 @@
 A library to help you parse the UK energy industry's MPAN number format.
 
 
-## How it works
+## Parsing & Validation
 
 ```python
-from mpan import MPAN
+from mpan.mpan import MPAN
 
 
 mpan = MPAN("A valid MPAN")
@@ -150,7 +150,8 @@ call `.check()` on an `MPAN` instance, which will explode with an
 > formula for the check digit will be applied.
 
 ```python
-from mpan import InvalidMPANError, MPAN
+from mpan.exceptions import InvalidMPANError
+from mpan.mpan import MPAN
 
 
 MPAN("2499999999991").is_valid          # True
@@ -172,12 +173,71 @@ except InvalidMPANError:
 There's also a shortcut if you just want validation:
 
 ```python
-from mpan import is_valid
+from mpan.helpers import is_valid
 
 
 is_valid("2499999999991")     # True
 is_valid("2499999999990")     # False
 is_valid("I am not an MPAN")  # False
+```
+
+
+## Generation
+
+You may not be interested in parsing an MPAN, but rather would just like a way
+to reliably generate a valid one a few thousand times.  For that, this library
+has a provider fo both the [Faker](https://pypi.org/project/Faker/) and
+[Mimesis](https://mimesis.name/) libraries:
+
+
+### Faker
+
+Faker support is available via the optional extra `faker`, so you must install
+`mpan` like this to use it:
+
+```shell
+$ pip install mpan[faker]
+```
+
+
+#### Example
+
+```python
+from faker import Faker
+
+from mpan.generation.faker import MPANProvider
+
+
+fake = Faker()
+fake.add_provider(MPANProvider)
+
+print(fake.mpan())
+```
+
+
+### Mimesis
+
+Mimesis support is available via the optional extra `mimesis`, so you must
+install `mpan` like this to use it:
+
+```shell
+$ pip install mpan[mimesis]
+```
+
+
+#### Example
+
+```python
+from mimesis import Generic
+from mimesis.locales import Locale
+
+from mpan.generation.mimesis import MPANProvider
+
+
+generic = Generic(locale=Locale.DEFAULT)
+generic.add_provider(MPANProvider)
+
+print(generic.mpan.generate())
 ```
 
 
