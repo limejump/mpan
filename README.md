@@ -181,6 +181,40 @@ is_valid("2499999999990")     # False
 is_valid("I am not an MPAN")  # False
 ```
 
+### Generation
+
+You can also use this library to generate valid MPANs via [Faker](https://github.com/joke2k/faker)
+or [Mimesis](https://mimesis.name/):
+
+
+#### Faker
+
+```python
+from faker import Faker
+
+from mpan.generation.faker import MPANProvider
+
+
+fake = Faker()
+fake.add_provider(MPANProvider)
+fake.mpan()
+```
+
+
+#### Mimesis
+
+```python
+from mimesis import Generic
+from mimesis.locales import Locale
+
+from mpan.generation.mimesis import MPANProvider
+
+
+generic = Generic(locale=Locale.DEFAULT)
+generic.add_provider(MPANProvider)
+generic.mpan.generate()
+```
+
 
 ## Generation
 
@@ -243,10 +277,24 @@ print(generic.mpan.generate())
 
 ## Installation
 
-It's on PyPI:
+It's on PyPI, so you can install it with `pip`:
 
 ```shell
 $ pip install mpan
+```
+
+This will give you the base version of the library which can only do parsing
+and validation.  If you also want support for generation, you need to specify
+*which* generation method you want to use.  It will be rolled in as a dependency:
+
+```shell
+$ pip install mpan[faker]
+```
+
+or
+
+```shell
+$ pip install mpan[mimesis]
 ```
 
 
@@ -297,6 +345,12 @@ there.
 
 
 ## Changelog
+
+
+### 1.1.0
+
+* Added support for automatic generation of valid MPANs with either Faker or
+  Mimesis.
 
 
 ### 1.0.4
