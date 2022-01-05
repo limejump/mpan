@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mpan"
-version = "1.0.4"
+version = "1.1.0"
 description = "A parsing library for the UK's MPAN energy standard"
 authors = ["Limejump Developers <opensource@limejump.com>"]
 license = "MIT"
