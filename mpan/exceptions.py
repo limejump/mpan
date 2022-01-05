@@ -1,0 +1,2 @@
+class InvalidMPANError(Exception):
+    pass
