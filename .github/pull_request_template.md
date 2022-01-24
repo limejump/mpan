@@ -1,3 +1,5 @@
-* Please include a summary of the change and which issue is fixed.
-* Please also include relevant motivation and context.
-* List any dependencies that are required for this change.
+---
+**IMPORTANT**: Do not include real MPANs in your pull-requests.  MPANs are
+considered private information, so sharing them on a public repo like this one
+is a Bad Idea™.
+---
