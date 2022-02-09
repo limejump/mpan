@@ -1,0 +1,37 @@
+name: Lint and Test
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+
+    steps:
+
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade --no-cache-dir pip poetry
+          poetry config virtualenvs.create false
+          poetry install --extras faker --extras mimesis
+
+      - name: Lint and check formatting
+        run: |
+          poetry run flake8 mpan tests
+          poetry run black --check .
+          poetry run isort --check-only .
+
+      - name: Test with pytest
+        run: |
+          poetry run pytest --cov --cov-report=term-missing --cov-config=pyproject.toml --cov-fail-under=100

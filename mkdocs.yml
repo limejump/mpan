@@ -1,0 +1,15 @@
+site_name: MPAN
+repo_url: https://github.com/limejump/mpan
+nav:
+  - Home: index.md
+  - installation.md
+  - parsing.md
+  - validation.md
+  - generation.md
+  - development.md
+  - changelog.md
+plugins:
+  - search
+  - techdocs-core
+markdown_extensions:
+  - admonition
