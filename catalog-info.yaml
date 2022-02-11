@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: mpan
+  title: mpan
+  description: A library to help you parse the UK energy industry's MPAN number format.
+  annotations:
+    github.com/project-slug: limejump/mpan
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - python
+  links:
+    - url: https://pypi.org/project/mpan/
+      title: Package
+      icon: package-down
+spec:
+  type: library
+  lifecycle: production
+  owner: dar

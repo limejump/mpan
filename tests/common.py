@@ -1,8 +1,3 @@
-import json
-
-from pathlib import Path
-
-
 # These can't be handled at all by the library
 UNPARSEABLE = (
     "Not an MPAN",
@@ -18,24 +13,17 @@ INVALID = (
 )
 
 
-def get_valid_mpans() -> list:
-    """
-    For privacy reasons, valid MPANs cannot be included in this project
-    directly.  Instead, if you want to test for a list of MPANs you know to be
-    legitimate, you must provide them yourself in a file called
-    `tests/data/valid-mpans.json`.  This file should be a JSON list of strings
-    and/or integers, like this:
-
-      [
-        "1234567890123456789012",
-        "1234567890123",
-        1234567890123456789012,
-        1234567890123
-      ]
-
-    """
-    path = Path(__file__).parent / "data" / "valid-mpans.json"
-    if not path.exists():
-        return []
-    with path.open() as f:
-        return json.load(f)
+# These are randomly generated.  Any correlation to a real MPAN is entirely
+# coincidental.
+VALID = (
+    "069238I51470116845051",
+    "01575R681049827101269",
+    "04989PT43433899920164",
+    "00709GFE2143967712809",
+    "02116MEB2830997098859",
+    "03968O6C1816273348119",
+    "04603EXJ2146743072093",
+    "0454742I1892941794350",
+    "01947QUY1525379938096",
+    "04962VE42544886475542",
+)

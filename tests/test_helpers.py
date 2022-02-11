@@ -2,12 +2,12 @@ from unittest import TestCase
 
 from mpan.helpers import is_valid
 
-from .common import INVALID, UNPARSEABLE, get_valid_mpans
+from .common import INVALID, UNPARSEABLE, VALID
 
 
 class IsValidTestCase(TestCase):
     def test_is_valid(self):
-        for string in get_valid_mpans():
+        for string in VALID:
             with self.subTest(string=string):
                 self.assertTrue(is_valid(string), string)
 

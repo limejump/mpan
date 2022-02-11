@@ -3,7 +3,7 @@ from unittest import TestCase
 from mpan.exceptions import InvalidMPANError
 from mpan.mpan import MPAN
 
-from .common import INVALID, UNPARSEABLE, get_valid_mpans
+from .common import INVALID, UNPARSEABLE, VALID
 
 
 class MPANTestCase(TestCase):
@@ -18,7 +18,7 @@ class MPANTestCase(TestCase):
         )
 
     def test___eq__with_valid_mpans(self):
-        for string in get_valid_mpans():
+        for string in VALID:
             self.assertEqual(MPAN(string), MPAN(string))
 
     def test___eq__with_invalid_mpans(self):
@@ -86,7 +86,7 @@ class MPANTestCase(TestCase):
         )
 
     def test_is_valid(self):
-        for string in get_valid_mpans():
+        for string in VALID:
             with self.subTest(string=string):
                 self.assertTrue(MPAN(string).is_valid)
 
@@ -96,7 +96,7 @@ class MPANTestCase(TestCase):
                 self.assertFalse(MPAN(string).is_valid)
 
     def test_check_pass(self):
-        for string in get_valid_mpans():
+        for string in VALID:
             with self.subTest(string=string):
                 self.assertIsNone(MPAN(string).check())
 
