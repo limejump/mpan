@@ -70,41 +70,34 @@ mpan.line_loss_factor_class  # None
 ## The Distributor
 
 The `core` can also be broken up to look into the `distributor`, which is a
-little tricky, since the distributor id can either refer to a DNO (which has a
-known set of properties) or an IDNO (which has a different set).  We handle
-this discrepancy by returning `None` in cases where the requested information
-is unavailable:
+little tricky, since the distributor id can either refer to a DNO or an IDNO
+both of which are similar, but slightly different in how we refer to them.
+This library does its best to represent a unified interface to both:
 
 ```python
 mpan = MPAN("2099999999993")
 
 mpan.distributor                   # A Distributor instance
 mpan.distributor.identifier        # "20"
-mpan.distributor.area              # "Southern England"
-mpan.distributor.gsp_group_id      # "_H"
-mpan.distributor.operator          # "Scottish & Southern Electricity Networks"
+mpan.distributor.gsp_group_ids     # ["_H"]
+mpan.distributor.name              # "Scottish & Southern Electricity Networks"
 mpan.distributor.participant_id    # "SOUT"
 mpan.distributor.is_dno            # True
 mpan.distributor.is_idno           # False
+mpan.distributor.type              # "DNO"
 mpan.distributor.is_valid          # True
-mpan.distributor.licensee          # None
-mpan.distributor.mpas_operator_id  # None
-mpan.distributor.name              # None
 
 mpan = MPAN("2499999999991")
 
 mpan.distributor                   # A Distributor instance
 mpan.distributor.identifier        # "24"
-mpan.distributor.area              # None
-mpan.distributor.gsp_group_id      # None
-mpan.distributor.operator          # None
-mpan.distributor.participant_id    # None
+mpan.distributor.gsp_group_ids     # ["_A", "_B", "_C", "_D", "_E", "_F", "_G", "_H", "_J", "_K", "_L", "_M", "_N", "_P"]
+mpan.distributor.name              # "Envoy"
+mpan.distributor.participant_id    # "IPNL"
 mpan.distributor.is_dno            # False
 mpan.distributor.is_idno           # True
+mpan.distributor.type              # "IDNO"
 mpan.distributor.is_valid          # True
-mpan.distributor.licensee          # "Independent Power Networks"
-mpan.distributor.mpas_operator_id  # "IPNL"
-mpan.distributor.name              # "Envoy"
 ```
 
 

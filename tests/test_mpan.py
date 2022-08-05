@@ -98,7 +98,7 @@ class MPANTestCase(TestCase):
     def test_check_pass(self):
         for string in VALID:
             with self.subTest(string=string):
-                self.assertIsNone(MPAN(string).check())
+                self.assertIsNone(MPAN(string).check(), string)
 
     def test_check_fail(self):
         for string in INVALID:
