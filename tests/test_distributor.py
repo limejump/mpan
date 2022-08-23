@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+from freezegun import freeze_time
+
 from mpan.distributor import Distributor
 
 
@@ -29,33 +31,30 @@ class DistributorTestCase(TestCase):
         )
         self.assertFalse(Distributor(identifier="test").is_valid)
 
-    def test_area(self):
-        self.assertEqual(self.dno.area, "Eastern England")
-        self.assertIsNone(self.idno.area)
-
-    def test_operator(self):
-        self.assertEqual(self.dno.operator, "UK Power Networks")
-        self.assertIsNone(self.idno.operator)
-
     def test_participant_id(self):
         self.assertEqual(self.dno.participant_id, "EELC")
-        self.assertIsNone(self.idno.participant_id)
+        self.assertEqual(self.idno.participant_id, "IPNL")
 
-    def test_gsp_group_id(self):
-        self.assertEqual(self.dno.gsp_group_id, "_A")
-        self.assertIsNone(self.idno.gsp_group_id)
+    def test_gsp_group_ids(self):
+
+        distributor = Distributor(identifier="28")
+
+        with freeze_time("2001-01-01"):
+            self.assertEqual(distributor.gsp_group_ids, [])
+
+        with freeze_time("2010-01-01"):
+            self.assertEqual(distributor.gsp_group_ids, ["_C"])
+
+        with freeze_time("2020-01-01"):
+            self.assertEqual(distributor.gsp_group_ids, [])
 
     def test_name(self):
-        self.assertIsNone(self.dno.name)
-        self.assertEqual(self.idno.name, "Envoy")
+        self.assertEqual(self.dno.name, "UK Power Networks")
+        self.assertEqual(self.idno.name, "Independent Power Networks Ltd.")
 
-    def test_licensee(self):
-        self.assertIsNone(self.dno.licensee)
-        self.assertEqual(self.idno.licensee, "Independent Power Networks")
-
-    def test_mpas_operator_id(self):
-        self.assertIsNone(self.dno.mpas_operator_id)
-        self.assertEqual(self.idno.mpas_operator_id, "IPNL")
+    def test_type(self):
+        self.assertEqual(self.dno.type, "DNO")
+        self.assertEqual(self.idno.type, "IDNO")
 
     def test_is_dno(self):
         self.assertTrue(self.dno.is_dno)
