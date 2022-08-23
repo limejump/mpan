@@ -487,10 +487,9 @@ you get a handy <code>MPAN</code> object with a number of convenient properties:
 
 <h2 id="the-distributor">The Distributor<a class="headerlink" href="#the-distributor" title="Permanent link">&para;</a></h2>
 <p>The <code>core</code> can also be broken up to look into the <code>distributor</code>, which is a
-little tricky, since the distributor id can either refer to a DNO (which has a
-known set of properties) or an IDNO (which has a different set).  We handle
-this discrepancy by returning <code>None</code> in cases where the requested information
-is unavailable:</p>
+little tricky, since the distributor id can either refer to a DNO or an IDNO
+both of which are similar, but slightly different in how we refer to them.
+This library does its best to represent a unified interface to both:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -513,41 +512,29 @@ is unavailable:</p>
 20
 21
 22
-23
-24
-25
-26
-27
-28
-29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">mpan</span> <span class="o">=</span> <span class="n">MPAN</span><span class="p">(</span><span class="s2">&quot;2099999999993&quot;</span><span class="p">)</span>
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">mpan</span> <span class="o">=</span> <span class="n">MPAN</span><span class="p">(</span><span class="s2">&quot;2099999999993&quot;</span><span class="p">)</span>
 
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span>                   <span class="c1"># A Distributor instance</span>
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">identifier</span>        <span class="c1"># &quot;20&quot;</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">area</span>              <span class="c1"># &quot;Southern England&quot;</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">gsp_group_id</span>      <span class="c1"># &quot;_H&quot;</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">operator</span>          <span class="c1"># &quot;Scottish &amp; Southern Electricity Networks&quot;</span>
+<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">gsp_group_ids</span>     <span class="c1"># [&quot;_H&quot;]</span>
+<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">name</span>              <span class="c1"># &quot;Scottish &amp; Southern Electricity Networks&quot;</span>
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">participant_id</span>    <span class="c1"># &quot;SOUT&quot;</span>
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">is_dno</span>            <span class="c1"># True</span>
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">is_idno</span>           <span class="c1"># False</span>
+<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">type</span>              <span class="c1"># &quot;DNO&quot;</span>
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">is_valid</span>          <span class="c1"># True</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">licensee</span>          <span class="c1"># None</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">mpas_operator_id</span>  <span class="c1"># None</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">name</span>              <span class="c1"># None</span>
 
 <span class="n">mpan</span> <span class="o">=</span> <span class="n">MPAN</span><span class="p">(</span><span class="s2">&quot;2499999999991&quot;</span><span class="p">)</span>
 
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span>                   <span class="c1"># A Distributor instance</span>
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">identifier</span>        <span class="c1"># &quot;24&quot;</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">area</span>              <span class="c1"># None</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">gsp_group_id</span>      <span class="c1"># None</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">operator</span>          <span class="c1"># None</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">participant_id</span>    <span class="c1"># None</span>
+<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">gsp_group_ids</span>     <span class="c1"># [&quot;_A&quot;, &quot;_B&quot;, &quot;_C&quot;, &quot;_D&quot;, &quot;_E&quot;, &quot;_F&quot;, &quot;_G&quot;, &quot;_H&quot;, &quot;_J&quot;, &quot;_K&quot;, &quot;_L&quot;, &quot;_M&quot;, &quot;_N&quot;, &quot;_P&quot;]</span>
+<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">name</span>              <span class="c1"># &quot;Envoy&quot;</span>
+<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">participant_id</span>    <span class="c1"># &quot;IPNL&quot;</span>
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">is_dno</span>            <span class="c1"># False</span>
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">is_idno</span>           <span class="c1"># True</span>
+<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">type</span>              <span class="c1"># &quot;IDNO&quot;</span>
 <span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">is_valid</span>          <span class="c1"># True</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">licensee</span>          <span class="c1"># &quot;Independent Power Networks&quot;</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">mpas_operator_id</span>  <span class="c1"># &quot;IPNL&quot;</span>
-<span class="n">mpan</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">name</span>              <span class="c1"># &quot;Envoy&quot;</span>
 </code></pre></div>
 </td></tr></table>
 
