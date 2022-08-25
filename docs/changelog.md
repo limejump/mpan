@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0
+
+* We rewrote the distribution portion of the parser to better reflect the n:1
+  relationship between GSP groups and distributors.  The `.gsp_group_id`
+  (`str`) is gone, replaced with `.gsp_groups` (`list[str]`).
+* The API for DNOs and IDNOs are now the same, dropping properties like
+  `.licensee` and `mpas_operator_id` in favour of a common `participant_id`.
+  See the docs for specifics.
+
 
 ## 1.1.0
 
