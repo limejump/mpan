@@ -51,7 +51,7 @@ class Command:
         "31": {"id": "UKPD", "name": "UK Power Distribution Ltd."},
         "32": {"id": "UDNL", "name": "Energy Assets Networks Ltd."},
         "33": {"id": "GGEN", "name": "Eclipse Power Networks"},
-        "34": {"id": "MPDL", "name": "Murphy Power"},  # Unsure of this name
+        "34": {"id": "MPDL", "name": "Murphy Group"},
         "35": {"id": "FEAL", "name": "Fulcrum Electricity Assets"},
         "36": {"id": "VATT", "name": "Vattenfall Networks Ltd."},
         "37": {"id": "FORB", "name": "Optimal Power Networks Ltd."},
