@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mpan"
-version = "2.0.0"
+version = "2.1.0"
 description = "A parsing library for the UK's MPAN energy standard"
 authors = ["Limejump Developers <opensource@limejump.com>"]
 license = "MIT"
@@ -12,7 +12,7 @@ documentation = "https://github.com/limejump/mpan"
 
 [tool.poetry.dependencies]
 
-python = ">=3.8,<4.0"
+python = ">=3.11,<4.0"
 
 Faker = { version = "^10.0.0", optional = true }
 mimesis = { version = "^5.1.0", optional = true }

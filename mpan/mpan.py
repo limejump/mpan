@@ -55,7 +55,7 @@ class MPAN:
         return str(self)
 
     def __eq__(self, other):
-        if not isinstance(other, MPAN):
+        if not isinstance(other, (MPAN, str)):
             return False
         return str(self) == str(other)
 

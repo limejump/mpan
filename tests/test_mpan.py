@@ -31,6 +31,10 @@ class MPANTestCase(TestCase):
         self.assertNotEqual(MPAN(mpan_string), 108011002099999999386)
         self.assertNotEqual(MPAN(mpan_string), "twelve")
 
+    def test___eq__with_string(self):
+        mpan_string = "018011002099999999386"
+        self.assertEqual(MPAN(mpan_string), mpan_string)
+
     def test_parsing_long_pass(self):
 
         mpan = MPAN("018011002099999999386")
