@@ -12,7 +12,7 @@ documentation = "https://github.com/limejump/mpan"
 
 [tool.poetry.dependencies]
 
-python = ">=3.11,<4.0"
+python = ">=3.8,<4.0"
 
 Faker = { version = "^10.0.0", optional = true }
 mimesis = { version = "^5.1.0", optional = true }
@@ -25,7 +25,7 @@ mimesis = ["mimesis"]
 
 
 [tool.poetry.dev-dependencies]
-black = "^20.8b1"
+black = "^23.0"
 isort = "^5.7.0"
 flake8 = "^3.8.4"
 freezegun = "^1.2.1"

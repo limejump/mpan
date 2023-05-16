@@ -59,7 +59,6 @@ class Command:
     }
 
     def __init__(self) -> None:
-
         self.parser = ArgumentParser(
             description=(
                 "The local database of MPAN-related data has to be updated "
@@ -77,15 +76,12 @@ class Command:
         self.args = self.parser.parse_args()
 
     def __call__(self, *args, **kwargs) -> int:
-
         with self.args.source.open() as f:
-
             reader = csv.reader(f)
             next(reader)  # Skip the header
 
             db = defaultdict(list)
             for row in reader:
-
                 gsp_id = row[0]
                 started = datetime.strptime(row[4], "%d/%m/%Y").date()
                 stopped = None
@@ -105,7 +101,6 @@ class Command:
 
     @staticmethod
     def _ensure_is_file(path: str) -> Path:
-
         path = Path(path)
 
         if not path.exists():

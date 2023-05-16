@@ -7,7 +7,6 @@ from ..profile_class import ProfileClass
 
 
 def generate() -> str:
-
     profile_class = random.choice(tuple(ProfileClass.DESCRIPTIONS.keys()))
 
     mtc = random.randint(100, 999)
