@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0
+
+* Allow equality comparison with strings.
+
 ## 2.0.0
 
 * We rewrote the distribution portion of the parser to better reflect the n:1

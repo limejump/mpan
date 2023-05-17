@@ -30,7 +30,6 @@ class Distributor(Subsection):
 
     @property
     def gsp_group_ids(self) -> List[str]:
-
         now = date.today()
 
         r = []

@@ -15,7 +15,6 @@ from .profile_class import ProfileClass
 
 
 class MPAN:
-
     RE_SHORT = re.compile(r"^((\d\d)(\d{8})\d\d(\d))$")
     RE_LONG = re.compile(
         r"^((\d\d)(\d\d\d)([A-Z0-9]{3}))((\d\d)(\d{8})\d\d(\d))$"
@@ -25,7 +24,6 @@ class MPAN:
     PRIMES = [3, 5, 7, 13, 17, 19, 23, 29, 31, 37, 41, 43]
 
     def __init__(self, raw_string: str) -> None:
-
         self.top_line = None
         self.profile_class = None
         self.meter_time_switch_code = None
@@ -55,7 +53,7 @@ class MPAN:
         return str(self)
 
     def __eq__(self, other):
-        if not isinstance(other, MPAN):
+        if not isinstance(other, (MPAN, str)):
             return False
         return str(self) == str(other)
 
@@ -117,7 +115,6 @@ class MPAN:
         self.checksum = m.group(4)
 
     def _parse_long(self, m: re.Match) -> None:
-
         self.top_line = m.group(1)
         self.profile_class = ProfileClass(m.group(2))
         self.meter_time_switch_code = MeterTimeSwitchCode(m.group(3))

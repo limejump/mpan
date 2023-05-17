@@ -34,7 +34,6 @@ class MeterTimeSwitchCode(Subsection):
 
     @property
     def description(self) -> Optional[str]:
-
         if not self.identifier:
             return None
 

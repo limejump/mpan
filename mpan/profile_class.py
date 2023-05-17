@@ -4,7 +4,6 @@ from .common import Subsection
 
 
 class ProfileClass(Subsection):
-
     DESCRIPTIONS = {
         "00": "Half-hourly supply (import and export)",
         "01": "Domestic unrestricted",

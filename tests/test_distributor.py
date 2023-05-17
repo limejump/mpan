@@ -36,7 +36,6 @@ class DistributorTestCase(TestCase):
         self.assertEqual(self.idno.participant_id, "IPNL")
 
     def test_gsp_group_ids(self):
-
         distributor = Distributor(identifier="28")
 
         with freeze_time("2001-01-01"):
